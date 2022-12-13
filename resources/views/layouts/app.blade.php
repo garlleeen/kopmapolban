@@ -5,7 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ 'Koperasi Mahasiswa POLBAN' }}</title>
+
+        <link rel="apple-touch-icon" href="{{ asset('images/logo.png') }}">
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/logo.png') }}">
 
         @isset($meta)
             {{ $meta }}
