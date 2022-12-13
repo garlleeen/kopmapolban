@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,4 +24,5 @@ Route::group(['prefix' => 'master', 'middleware' => ['auth:sanctum', config('jet
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::resource('/user', UserController::class);
+    Route::resource('/product-category', ProductCategoryController::class);
 });

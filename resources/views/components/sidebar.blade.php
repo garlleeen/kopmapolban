@@ -19,7 +19,7 @@
                 <li class="dropdown">
                     <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i><span>Management Product</span></a>
                     <ul class="dropdown-menu">
-                        <li class=""><a class="nav-link" href="">Product Category</a></li>
+                    <li class="{{ Request::routeIs('product-category.index') ? 'active' : '' }}"><a class="nav-link" href="{{ route('product-category.index') }}">Product Category</a></li>
                         <li class=""><a class="nav-link" href="">Product</a></li>
                     </ul>
                 </li>

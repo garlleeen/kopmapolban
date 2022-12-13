@@ -38,6 +38,8 @@
         <script defer src="{{ asset('vendor/alpine.js') }}"></script>
     </head>
     <body class="antialiased">
+        @include('sweetalert::alert')
+
         <div id="app">
             <div class="main-wrapper">
                 @include('components.navbar')
@@ -65,7 +67,7 @@
         @stack('modals')
 
         <!-- General JS Scripts -->
-        <script src="{{ asset('stisla/js/modules/jquery.min.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script defer async src="{{ asset('stisla/js/modules/popper.js') }}"></script>
         <script defer async src="{{ asset('stisla/js/modules/tooltip.js') }}"></script>
         <script src="{{ asset('stisla/js/modules/bootstrap.min.js') }}"></script>
