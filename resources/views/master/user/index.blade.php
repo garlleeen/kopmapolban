@@ -6,6 +6,8 @@
     <x-slot name="script">
         <script>
             var datatable = $('#crudUser').DataTable({
+                processing: true,
+                serverSide: true,
                 ajax: {
                     url: '{!! url()->current() !!}'
                 },
