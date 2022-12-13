@@ -21,4 +21,6 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'master', 'middleware' => ['auth:sanctum', config('jetstream.auth_session'), 'verified']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::resource('/user', UserController::class);
 });

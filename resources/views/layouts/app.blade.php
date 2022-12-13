@@ -22,7 +22,11 @@
         <link rel="stylesheet" href="{{ asset('stisla/css/components.css') }}">
         <link rel="stylesheet" href="{{ asset('vendor/notyf/notyf.min.css') }}">
         {{-- <link rel="stylesheet" href="{{ asset('css/app.css') }}"> --}}
+
         @vite(['resources/js/app.js'])
+
+        <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
+        <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 
         <link rel="stylesheet" href="https://kit-free.fontawesome.com/releases/latest/css/free-v4-shims.min.css" media="all">
         <link rel="stylesheet" href="https://kit-free.fontawesome.com/releases/latest/css/free-v4-font-face.min.css" media="all">
@@ -75,6 +79,9 @@
 
         <script src="{{ asset('stisla/js/stisla.js') }}"></script>
         <script src="{{ asset('stisla/js/scripts.js') }}"></script>
+
+        <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 
         <livewire:scripts />
         {{-- <script src="{{ mix('js/app.js') }}" defer></script> --}}

@@ -15,7 +15,7 @@
 
             @hasrole('Administrator')
                 <li class="menu-header">Management Data</li>
-                <li class=""><a class="nav-link" href=""><i class="fas fa-users"></i><span>Management User</span></a></li>
+                <li class="{{ Request::routeIs('user.index') ? 'active' : '' }}"><a class="nav-link" href="{{ route('user.index') }}"><i class="fas fa-users"></i><span>Management User</span></a></li>
                 <li class="dropdown">
                     <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i><span>Management Product</span></a>
                     <ul class="dropdown-menu">
