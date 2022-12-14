@@ -2,7 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
+use Illuminate\Support\Str;
+use App\Models\Product;
+use App\Models\ProductCategory;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductController extends Controller
 {
@@ -13,7 +20,28 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        if (request()->ajax()) {
+            $Data = Product::join('product_categories', 'product_categories.product_category_id', '=', 'products.product_category_id')->get();
+
+            return DataTables::of($Data)->addIndexColumn()
+                                        ->addColumn('action', function($item) {
+                                            return '
+                                                <div class="d-flex">
+                                                    <a href="' . route('product.edit', $item->product_id) . '" class="ml-2 btn btn-warning shadow-none">
+                                                        <span class="fas fa-edit"></span>
+                                                    </a>
+                                                    <form class="inline-block" action="' . route('product.destroy', $item->product_id) . '" method="POST">
+                                                        <button class="ml-2 btn btn-danger shadow-none">
+                                                            <span class="fas fa-trash"></span>
+                                                        </button>
+                                                        ' . method_field('delete') . csrf_field() . '
+                                                    </form>
+                                                </div>
+                                            ';
+                                        })->rawColumns(['action'])->make();
+        }
+
+        return view('master.product.index');
     }
 
     /**
@@ -23,7 +51,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $ProductCategory = ProductCategory::all();
+
+        return view('master.product.create', compact('ProductCategory'));
     }
 
     /**
@@ -32,9 +62,28 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $Request)
     {
-        //
+        try {
+            $Data  = [
+                'product_category_id' => $Request->product_category_id,
+                'product_code' => $Request->product_code,
+                'product_name' => $Request->product_name,
+                'product_stock' => $Request->product_stock,
+                'product_price' => $Request->product_price,
+                'product_desc' => $Request->product_desc,
+                'product_slug' => Str::slug($Request->product_name),
+                'product_exp' => $Request->product_exp,
+            ];
+
+            Product::create($Data);
+
+            Alert::success('Congrats', 'You\'ve Successfully Registered');
+            return redirect()->route('product.index');
+        } catch (QueryException $e) {
+            Alert::error('Error', $e->getMessage());
+            return redirect()->route('product.index');
+        }
     }
 
     /**
@@ -56,7 +105,9 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $Product = Product::where('product_id', $id)->get();
+
+        return view('master.product.edit', compact('Product'));
     }
 
     /**
@@ -66,9 +117,28 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductRequest $Request, $id)
     {
-        //
+        try {
+            $Data = Product::where('product_id', $id);
+
+            $Data->update([
+                'product_category_id' => $Request->product_category_id,
+                'product_code' => $Request->product_code,
+                'product_name' => $Request->product_name,
+                'product_stock' => $Request->product_stock,
+                'product_price' => $Request->product_price,
+                'product_desc' => $Request->product_desc,
+                'product_slug' => Str::slug($Request->product_name),
+                'product_exp' => $Request->product_exp,
+            ]);
+
+            Alert::success('Congrats', 'You\'ve Successfully Updated');
+            return redirect()->route('product.index');
+        } catch (QueryException $e) {
+            Alert::error('Error', $e->getMessage());
+            return redirect()->route('product.index');
+        }
     }
 
     /**
@@ -79,6 +149,9 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Product::where('product_id', $id)->delete();
+
+        Alert::success('Congrats', 'You\'ve Successfully Deleted');
+        return redirect()->route('product.index');
     }
 }

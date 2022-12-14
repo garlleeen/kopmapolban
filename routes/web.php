@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductCategoryController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,4 +26,5 @@ Route::group(['prefix' => 'master', 'middleware' => ['auth:sanctum', config('jet
 
     Route::resource('/user', UserController::class);
     Route::resource('/product-category', ProductCategoryController::class);
+    Route::resource('/product', ProductController::class);
 });

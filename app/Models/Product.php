@@ -14,29 +14,15 @@ class Product extends Model
 
     protected static $logName = 'Product';
 
-    protected $fillable = [
-        'id_category',
-        'qr_code',
-        'name',
-        'description',
-        'price',
-        'stock',
-        'slug',
-        'expire_date',
-    ];
+    protected $guarded = [];
 
     public function getActivitylogOptions(): LogOptions
     {
-        return LogOptions::defaults()
-        ->useLogName('Product')
-        ->logFillable();
-        // ->logUnguarded();
-        // ->logOnly(['name', 'description']);
-        // Chain fluent methods for configuration options
+        return LogOptions::defaults()->useLogName('Product')->logFillable();
     }
 
     public function category()
     {
-        return $this->belongsTo(Category::class, 'id_category', 'id');
+        return $this->belongsTo(ProductCategory::class, 'product_category_id');
     }
 }

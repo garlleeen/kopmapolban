@@ -85,6 +85,11 @@
         <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 
+        <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+        <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+
+        <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+
         <livewire:scripts />
         {{-- <script src="{{ mix('js/app.js') }}" defer></script> --}}
 
