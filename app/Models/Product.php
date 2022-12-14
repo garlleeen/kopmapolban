@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Contracts\Cartable;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -15,6 +16,11 @@ class Product extends Model
     protected static $logName = 'Product';
 
     protected $guarded = [];
+
+    public function getUnitPriceAttribute($value)
+    {
+        return number_format($value, 2);
+    }
 
     public function getActivitylogOptions(): LogOptions
     {

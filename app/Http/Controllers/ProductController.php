@@ -67,7 +67,7 @@ class ProductController extends Controller
         try {
             $Data  = [
                 'product_category_id' => $Request->product_category_id,
-                'product_code' => $Request->product_code,
+                'id' => $Request->product_code,
                 'product_name' => $Request->product_name,
                 'product_stock' => $Request->product_stock,
                 'product_price' => $Request->product_price,
@@ -124,7 +124,7 @@ class ProductController extends Controller
 
             $Data->update([
                 'product_category_id' => $Request->product_category_id,
-                'product_code' => $Request->product_code,
+                'id' => $Request->product_code,
                 'product_name' => $Request->product_name,
                 'product_stock' => $Request->product_stock,
                 'product_price' => $Request->product_price,

@@ -24,7 +24,7 @@
                     </ul>
                 </li>
             @else
-                I am not a writer...
+                <li class="{{ Request::routeIs('transaksi.index') ? 'active' : '' }}"><a class="nav-link" href="{{ route('transaksi.index') }}"><i class="fa fa-money"></i><span>Transaksi</span></a></li>
             @endhasrole
         </ul>
     </aside>
