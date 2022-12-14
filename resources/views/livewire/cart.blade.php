@@ -1,19 +1,60 @@
-<div class="w-1/4">
-    <div class="p-5 mx-2 my-2 max-w-md rounded border-2">
-        @if ($content->count() > 0)
-        @foreach ($content as $id => $item)
-        <p class="text-2xl text-right mb-2">
-            <button class="text-sm p-2 border-2 rounded border-gray-200 hover:border-gray-300 bg-gray-200 hover:bg-gray-300" wire:click="updateCartItem({{ $id }}, 'minus')"> - </button>
-            {{ $item->get('name') }} x {{ $item->get('quantity') }}
-            <button class="text-sm p-2 border-2 rounded border-gray-200 hover:border-gray-300 bg-gray-200 hover:bg-gray-300" wire:click="updateCartItem({{ $id }}, 'plus')"> + </button>
-            <button class="text-sm p-2 border-2 rounded border-red-500 hover:border-red-600 bg-red-500 hover:bg-red-600" wire:click="removeFromCart({{ $id }})">Remove</button>
-        </p>
-        @endforeach
-        <hr class="my-2">
-        <p class="text-xl text-right mb-2">Total: Rp. {{ $total }}</p>
-        <button class="w-full p-2 border-2 rounded border-red-500 hover:border-red-600 bg-red-500 hover:bg-red-600" wire:click="clearCart">Clear Cart</button>
-        @else
-        <p class="text-3xl text-center mb-2">cart is empty!</p>
-        @endif
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="form-group row">
+                    <div class="col-sm-2">
+                        <p>Cart List</p> 
+                    </div>
+                    <div class="col-sm-6">
+                        <button class="btn btn-danger shadow-none" wire:click="clearCart"><span class="fas fa-trash"></span> Clear Cart</button>
+                        <button class="btn btn-primary"><span class="fa fa-check"></span> Checkout</button>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped w-100">
+                        <thead>
+                            <tr>
+                                <th class="text-center">No</th>
+                                <th class="text-center">Name Product</th>
+                                <th class="text-center">Quantity</th>
+                                <th class="text-center">Price</th>
+                                <th class="text-center">Option</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                                $no = 1;
+                            ?>
+                            @if ($content->count() > 0)
+                                @foreach ($content as $id => $item)
+                                <tr>
+                                    <td class="text-center">{{ $no++; }}</td>
+                                    <td>{{ $item->get('name') }}</td>
+                                    <td class="text-center">{{ $item->get('quantity') }}</td>
+                                    <td class="text-center">Rp. {{ $item->get('price') }}</td>
+                                    <td class="text-center">
+                                        <button class="ml-2 btn btn-warning" wire:click="updateCartItem({{ $id }}, 'minus')"><span class="fa fa-minus"></span></button>
+                                        <button class="ml-2 btn btn-warning" wire:click="updateCartItem({{ $id }}, 'plus')"><span class="fa fa-plus"></span></button>
+                                        <button class="ml-2 btn btn-danger" wire:click="removeFromCart({{ $id }})"><span class="fas fa-trash"></span></button>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            @else
+                                <tr>
+                                    <td class="text-center" colspan="5">cart is empty!</td>
+                                </tr>                            
+                            @endif
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td class="text-right" colspan="3"><b>Total</b></td>
+                                <td class="text-center"> <b>Rp. {{ $total }}</b></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
