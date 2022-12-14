@@ -1,59 +1,76 @@
-# Laravel 9 + Stisla + Jetstream + Livewire
+### <p align="center"><b>Welcome to Koperasi Mahasiswa POLBAN</b></p>
 
-we love Stisla Admin Template and Laravel 9 let's make them love each other.
+------------
 
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/zalabs02/laravel-9-stisla-jetstream/issues)
+## 🤨 Feature
+- 
+- 
+- 
+- 
+- 
 
-## What inside?
-
--   Laravel ^9.x - [laravel.com/docs/9.x](https://laravel.com/docs/9.x)
--   Laravel Jetstream ^2.6 - [jetstream.laravel.com](https://jetstream.laravel.com/)
--   Livewire ^2.5 - [laravel-livewire.com](https://laravel-livewire.com)
--   Stisla Admin Template ^2.3.0 - [getstisla.com](https://getstisla.com/)
-
-Include simple Data Table with Livewire (CRUD).
-
-## How to use?
-
-Run the command below to start a new project
-```shell
-composer create-project afrizalmy/laravel9-stisla-livewire:dev-master <project_name>
+## 💻 Install
+- Clone Repository
+```bash
+git clone https://github.com/garlleee/kopmapolban.git
 ```
-Change *project_name* as desired.
-Next step is install all dependency required by laravel and laravel-mix.
-
-```shell
-# project directory
-$ cd <project_name>
-# install npm package
-$ npm install
-# build dev / hot reload
-$ npm run dev
-# build files (for production)
-$ npm run build
+```bash
+cd kopmapolban
 ```
 
-configure `.env` file and do migration.
-
-```shell
-# laravel migrate
-$ php artisan migrate
+- Install Composer Dependencies
+```bash
+composer install
 ```
 
-## How does it look?
+- Create a copy of your .env file
+```bash
+cp .env.example .env
+```
 
-<p align="center">
-    <img src="https://telegra.ph/file/49c7571f06872948fb0bc.png" width="80%" height="auto" />
-    <img src="https://telegra.ph/file/613288c34841388c24f34.png" width="80%" height="auto" />
-    <img src="https://telegra.ph/file/7f893b085f7aaca5b91be.png" width="80%" height="auto" />
-    <img src="https://telegra.ph/file/8741e5fc455f02571b4c2.png" width="80%" height="auto" />
-</p>
+- Generate an app encryption key
+```bash
+php artisan key:generate
+```
 
-## Thanks To
-- [Taylor Ottwell](https://github.com/taylorotwell) for Laravel.
-- [Stisla](https://getstisla.com/) for admin theme.
-- [nyancodeid](https://github.com/nyancodeid) for basecode from laravel 8.x.
+- Open Project with VS Code
+```bash
+code .
+```
 
-## Contribution
-Please go to the issue page for further explanation.
-I welcome your contribution to this starter project.
+- set Database on .env file
+```bash
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=YourDatabase
+DB_USERNAME=YourUsernameDatabase
+DB_PASSWORD=YourPasswordDatabase
+```
+
+- Migrate the Database
+```bash
+php artisan migrate --seed
+```
+
+- Running Server
+```bash
+php artisan serve
+```
+```bash
+npm install & npm run dev
+```
+
+## 🧑 Author
+👤 **Bagus Nugroho**
+- Instagram : <a href="https://www.instagram.com/unab.banu/">@unab.banu</a>
+
+👤 **Garly Nugraha**
+- Instagram : <a href="https://www.instagram.com/garlleeen/">@garlleeen</a>
+
+👤 **Syahrul Abdillah**
+- Instagram : <a href="https://www.instagram.com/syahrullabdillah_/">@syahrullabdillah_</a>
+
+------------
+
+<p align="center"><b>Made with ❤️ by JTK POLBAN</b></p>
