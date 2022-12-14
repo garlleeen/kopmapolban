@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id('product_category_id');
             $table->string('product_category_name')->unique();
             $table->string('product_category_slug')->unique();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
