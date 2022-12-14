@@ -6,25 +6,7 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header">
-                    @if ($errors->any())
-                        <div class="alert alert-danger alert-dismissible show fade">
-                            <div class="alert-body">
-                                <button class="close" data-dismiss="alert">
-                                    <span>&times;</span>
-                                </button>
-                                There's something wrong!
-                                <p>
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </p>
-                            </div>
-                        </div>
-                    @endif
-                </div>
+                <div class="card-header"></div>
                 @foreach($ProductCategory as $PC)
                     <form action="{{ route('product-category.update', $PC->product_category_id) }}" method="post">
                         @csrf
@@ -42,7 +24,7 @@
                             <button class="btn btn-primary">Submit</button>
                         </div>
                     </form>
-                    @endforeach
+                @endforeach
             </div>
         </div>
     </div>

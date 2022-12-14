@@ -5,31 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ProductCategory extends Model
 {
-    use HasFactory, SoftDeletes, LogsActivity;
-    // public $table = 'category'; // dilakukan seperti ini agar tidak menjadi plural
+    use HasFactory, LogsActivity;
+    
     protected static $logName = 'Category';
 
-    protected $fillable = [
-        'category_name',
-    ];
+    protected $guarded = [];
 
     public function getActivitylogOptions(): LogOptions
     {
-        return LogOptions::defaults()
-        ->useLogName('Category')
-        ->logFillable();
-        // ->logUnguarded();
-        // ->logOnly(['name', 'description']);
-        // Chain fluent methods for configuration options
+        return LogOptions::defaults()->useLogName('Category')->logFillable();
     }
 
     public function product()
     {
-        return $this->hasOne(Product::class, 'id_category', 'id');
+        return $this->hasMany(Product::class);
     }
 }

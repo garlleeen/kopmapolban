@@ -22,7 +22,6 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
     use HasRoles;
-    use SoftDeletes;
     use LogsActivity;
 
     /**
@@ -78,10 +77,6 @@ class User extends Authenticatable
 
     public function getActivitylogOptions(): LogOptions
     {
-        return LogOptions::defaults()
-        ->useLogName('User')
-        ->logFillable();
-        // ->logOnly(['name', 'description']);
-        // Chain fluent methods for configuration options
+        return LogOptions::defaults()->useLogName('User')->logFillable();
     }
 }

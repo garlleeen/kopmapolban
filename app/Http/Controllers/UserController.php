@@ -21,9 +21,9 @@ class UserController extends Controller
     {
         if (request()->ajax()) {
             $Data = User::select('users.*', 'roles.name')
-            ->join('model_has_roles', 'model_has_roles.model_id', '=', 'users.id')
-            ->join('roles', 'roles.id', '=', 'model_has_roles.role_id')
-            ->where('name', '=', 'Cashier')->get();
+                        ->join('model_has_roles', 'model_has_roles.model_id', '=', 'users.id')
+                        ->join('roles', 'roles.id', '=', 'model_has_roles.role_id')
+                        ->where('name', '=', 'Cashier')->get();
             
             return DataTables::of($Data)->addIndexColumn()
                                         ->addColumn('action', function($item) {

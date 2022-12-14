@@ -19,9 +19,9 @@ class ProductCategoryController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $Query = ProductCategory::latest()->get();
+            $Data = ProductCategory::latest()->get();
 
-            return DataTables::of($Query)->addIndexColumn()
+            return DataTables::of($Data)->addIndexColumn()
                 ->addColumn('action', function($item) {
                     return '
                         <div class="d-flex">
@@ -119,7 +119,7 @@ class ProductCategoryController extends Controller
             return redirect()->route('product-category.index');
         } catch (QueryException $e) {
             Alert::error('Error', $e->getMessage());
-            return redirect()->route("product-category.index");
+            return redirect()->route('product-category.index');
         }
     }
 
