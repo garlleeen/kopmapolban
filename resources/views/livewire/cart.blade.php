@@ -7,8 +7,8 @@
                         <p>Cart List</p> 
                     </div>
                     <div class="col-sm-6">
-                        <button class="btn btn-danger shadow-none" wire:click="clearCart"><span class="fas fa-trash"></span> Clear Cart</button>
-                        <button class="btn btn-primary"><span class="fa fa-check"></span> Checkout</button>
+                        <button class="btn btn-danger" wire:click="clearCart"><span class="fas fa-trash"></span> Clear Cart</button>
+                        <button class="btn btn-primary" wire:click="CheckOut"><span class="fa fa-check"></span> Checkout</button>
                     </div>
                 </div>
                 <div class="table-responsive">

@@ -29,8 +29,8 @@
                         <p>Scan Qr Code Disini</p>
                     </div>
                 </div>
-                <form action="#" method="post">
-                    @csrf
+                <!-- <form action="#" method="post"> -->
+                    <!-- @csrf -->
 
                     <div class="card-body">
                         <div class="form-group row">
@@ -38,15 +38,25 @@
                                 <div id="reader"></div>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" value="{{ old('product_code') }}" name="product_code" id="product_code" class="form-control" placeholder="Qr Code Produk">
+                                <div class="row">
+                                    <input type="text" value="{{ old('product_code') }}" name="product_code" id="product_code" class="form-control" placeholder="Qr Code Product">    
+                                </div>
+                                <div class="row">
+                                    <input type="text" value="{{ old('product_name') }}" name="product_name" class="form-control" placeholder="Name Product">    
+                                </div>
+                                    <div class="row">
+                                <input type="text" value="{{ old('product_price') }}" name="product_price" class="form-control" placeholder="Price Product">    
+                                </div>
                             </div>
                             <div class="col-sm-4">
-                                <button class="btn btn-primary">Submit</button>
+                                <!-- <button class="btn btn-primary">Submit</button> -->
+                                <!-- <button class="btn btn-primary" wire:click="addToCart">Submit</button> -->
+                                 <button class="p-2 border-2 rounded border-blue-500 hover:border-blue-600 bg-blue-500 hover:bg-blue-600" wire:click="addToCart">Add To Cart</button>
                             </div>
                         </div>
                         
                     </div>
-                </form>
+                <!-- </form> -->
             </div>
         </div>
     </div>

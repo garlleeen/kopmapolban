@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('transaksi', function (Blueprint $table) {
             $table->id();
             $table->integer('status_pembayaran');
-            $table->bigInteger('total_pembayaran');
-            $table->bigInteger('nominal_uang');
-            $table->bigInteger('nominal_kembalian');
+            $table->float('total_pembayaran', 20, 2, true);
+            $table->float('nominal_uang', 20, 2, true);
+            $table->float('nominal_kembalian', 20, 2, true);
             $table->softDeletes();
             $table->timestamps();
         });

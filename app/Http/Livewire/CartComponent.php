@@ -5,6 +5,9 @@ namespace App\Http\Livewire;
 use App\Facades\Cart;
 use Livewire\Component;
 use Illuminate\Contracts\View\View;
+use App\Models\Transaksi;
+use Illuminate\Database\QueryException;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CartComponent extends Component
 {
@@ -83,5 +86,25 @@ class CartComponent extends Component
     {
         $this->total = Cart::total();
         $this->content = Cart::content();
+    }
+
+
+    public function CheckOut(){
+        $total_all = str_replace(',', '', Cart::total());
+        // $total_all = str_replace(',', '.', $total_all);
+        $total_all = floatval($total_all);
+
+        $Data  = [
+            'status_pembayaran' => 1,
+            'total_pembayaran' => $total_all,
+            'nominal_uang' => $total_all,
+            'nominal_kembalian' => 0
+        ];
+
+        Transaksi::create($Data);
+        Cart::clear();
+        $this->updateCart();
+        Alert::success('Congrats', 'You\'ve Successfully Checkout');
+
     }
 }

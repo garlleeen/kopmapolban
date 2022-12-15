@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('id_transaksi');
             $table->bigInteger('id_product');
-            $table->bigInteger('price_buy');
+            $table->float('price_buy', 20, 2, true);
             $table->bigInteger('qty');
-            $table->bigInteger('subtotal');
+            $table->float('subtotal', 20, 2, true);
             $table->softDeletes();
             $table->timestamps();
         });
