@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UserRequest;
 use App\Models\User;
-use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Database\QueryException;
 use RealRashid\SweetAlert\Facades\Alert;
+use Yajra\DataTables\Facades\DataTables;
 
 class UserController extends Controller
 {
@@ -19,6 +21,7 @@ class UserController extends Controller
      */
     public function index()
     {
+        Log::info(Auth::user()->fullname . " Sedang Mengakses data kasir");
         if (request()->ajax()) {
             $Data = User::select('users.*', 'roles.name')
                         ->join('model_has_roles', 'model_has_roles.model_id', '=', 'users.id')
