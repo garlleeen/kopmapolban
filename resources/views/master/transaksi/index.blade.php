@@ -6,10 +6,10 @@
     <x-slot name="script">
         <script>
             function onScanSuccess(decodedText, decodedResult) {
-                $("#product_code").val(decodedText);
-                var audio = new Audio(asset('media/beep.mp3'));
+                var audio = new Audio("{{ asset('media/beep.mp3') }}");
                 audio.play();
-                alert("QR berhasil di scan");
+                $("#product_code").val(decodedText);
+                // alert("QR berhasil di scan");
             }
 
             function onScanFailure(error) {
