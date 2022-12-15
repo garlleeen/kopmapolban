@@ -8,6 +8,8 @@ use Illuminate\Contracts\View\View;
 use App\Models\Transaksi;
 use Illuminate\Database\QueryException;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Notifications\SendNotificationTelegram;
+use Illuminate\Support\Facades\Notification;
 
 class CartComponent extends Component
 {
@@ -102,6 +104,7 @@ class CartComponent extends Component
         ];
 
         Transaksi::create($Data);
+        Notification::send($total_all, new SendNotificationTelegram('test')); 
         Cart::clear();
         $this->updateCart();
         Alert::success('Congrats', 'You\'ve Successfully Checkout');

@@ -45,7 +45,7 @@ class SendNotificationTelegram extends Notification
         return TelegramMessage::create()
         ->to('-828164687')
         // ->content('test Your invoice has been *PAID*');
-        ->content('Terjadi transaksi baru dengan ID ' . $notifiable . ' dengan total ' . $notifiable );
+        ->content('Telah terjadi transaksi baru dengan nominal transaksi sebanyak *Rp. ' . $notifiable . '* Pada ' . date('Y-m-d H:i:s') );
     }
 
     // return (new MailMessage)                    

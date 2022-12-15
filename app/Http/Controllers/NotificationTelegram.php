@@ -10,12 +10,9 @@ class NotificationTelegram extends Controller
 {
     public function transaction_notif_tele(){
 
-        $data = [
-            'id_transaksi' => 'TRK000001',
-            'total' => 20000
-        ];
+        $total = 12000;
 
-        Notification::send('banyak barang', new SendNotificationTelegram('test')); 
+        Notification::send($total, new SendNotificationTelegram('test')); 
         // $user->notify(new SendNotification($invoice));
     }
 
