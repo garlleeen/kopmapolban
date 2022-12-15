@@ -56,6 +56,7 @@ class UserController extends Controller
      */
     public function create()
     {
+        Log::info(Auth::user()->fullname . " Sedang membuat user baru");
         return view('master.user.create');
     }
 
@@ -75,7 +76,7 @@ class UserController extends Controller
             ]);
 
             $CashierRole->assignRole('Cashier');
-
+            Log::info(Auth::user()->fullname . " Sedang Membuat user baru");
             Alert::success('Congrats', 'You\'ve Successfully Registered');
             return redirect()->route("user.index");
         } catch (QueryException $e) {
@@ -103,9 +104,10 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        Log::info(Auth::user()->fullname . " Sedang Mengedit data user");
         $User = User::where('id', $id)->get();
 
-        return view('master.user.index', compact('User'));
+        return view('master.user.edit', compact('User'));
     }
 
     /**
@@ -115,18 +117,25 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $Request, $id)
     {
         try {
             $Data = User::where('id', $id);
-
-            $Data->update([
-                'fullname' => $Request->fullname,
-                'email' => $Request->email,
-                'password' => Hash::make($Request->password),
-            ]);
-
-            Alert::success('Congrats', 'You\'ve Successfully Registered');
+            if(!empty($Request->password)){
+                $Data->update([
+                    'fullname' => $Request->fullname,
+                    'email' => $Request->email,
+                    'password' => Hash::make($Request->password),
+                ]);
+            }
+            else{
+                $Data->update([
+                    'fullname' => $Request->fullname,
+                    'email' => $Request->email,
+                ]);
+            }
+            Log::info(Auth::user()->fullname . " Sedang Mengupdate data user");
+            Alert::success('Congrats', 'You\'ve Successfully update');
             return redirect()->route('user.index');
         } catch (QueryException $e) {
             Alert::error('Error', $e->getMessage());
@@ -142,6 +151,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+        Log::info(Auth::user()->fullname . " Sedang mengdelete data user");
         User::where('id', $id)->delete();
 
         Alert::success('Congrats', 'You\'ve Successfully Deleted');

@@ -1,7 +1,7 @@
 
 <x-app-layout>
     <x-slot name="header_content">
-        <h1>{{ __('Product Category') }}</h1>
+        <h1>{{ __('Create Akun') }}</h1>
     </x-slot>
 
     <div class="row">
@@ -16,19 +16,19 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Full Name</label>
                             <div class="col-sm-9">
-                                <input type="text" value="{{ old('fullname') }}" name="fullname" class="form-control">
+                                <input type="text" value="{{ old('fullname') }}" name="fullname" class="form-control" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Email</label>
                             <div class="col-sm-9">
-                                <input type="email" value="{{ old('email') }}" name="email" class="form-control">
+                                <input type="email" value="{{ old('email') }}" name="email" class="form-control" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Password</label>
                             <div class="col-sm-9">
-                                <input type="password" value="{{ old('password') }}" name="password" class="form-control">
+                                <input type="password" value="{{ old('password') }}" name="password" class="form-control" required>
                             </div>
                         </div>
                     </div>

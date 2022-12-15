@@ -11,7 +11,7 @@ class Main extends Component
     use WithPagination, WithDataTable;
 
     public $model;
-    public $name;
+    public $fullname;
 
     public $perPage = 10;
     public $sortField = "id";
@@ -38,7 +38,7 @@ class Main extends Component
         if (!$data) {
             $this->emit("deleteResult", [
                 "status" => false,
-                "message" => "Gagal menghapus data " . $this->name
+                "message" => "Gagal menghapus data " . $this->fullname
             ]);
             return;
         }
@@ -46,7 +46,7 @@ class Main extends Component
         $data->delete();
         $this->emit("deleteResult", [
             "status" => true,
-            "message" => "Data " . $this->name . " berhasil dihapus!"
+            "message" => "Data " . $this->fullname . " berhasil dihapus!"
         ]);
     }
 

@@ -23,7 +23,7 @@ class CreateUser extends Component
         ];
 
         return array_merge([
-            'user.name' => 'required|min:3',
+            'user.fullname' => 'required|min:3',
             'user.email' => 'required|email|unique:users,email'
         ], $rules);
     }
@@ -53,7 +53,7 @@ class CreateUser extends Component
         User::query()
             ->where('id', $this->userId)
             ->update([
-                "name" => $this->user->name,
+                "fullname" => $this->user->fullname,
                 "email" => $this->user->email,
             ]);
 

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ProductCategoryRequest;
 use Illuminate\Support\Str;
 use App\Models\ProductCategory;
@@ -18,6 +20,7 @@ class ProductCategoryController extends Controller
      */
     public function index()
     {
+        Log::info(Auth::user()->fullname . " Sedang Mengakses product category");
         if (request()->ajax()) {
             $Data = ProductCategory::latest()->get();
 
@@ -49,6 +52,7 @@ class ProductCategoryController extends Controller
      */
     public function create()
     {
+        Log::info(Auth::user()->fullname . " Sedang Membuat product category");
         return view('master.product-category.create');
     }
 
@@ -65,7 +69,7 @@ class ProductCategoryController extends Controller
             $Data['product_category_slug'] = Str::slug($Request->product_category_name);
 
             ProductCategory::create($Data);
-
+            Log::info(Auth::user()->fullname . " Sedang Menmebuat product category");
             Alert::success('Congrats', 'You\'ve Successfully Registered');
             return redirect()->route("product-category.index");
         } catch (\Exception $e) {
@@ -93,6 +97,7 @@ class ProductCategoryController extends Controller
      */
     public function edit($id)
     {
+        Log::info(Auth::user()->fullname . " Sedang Mengedit product category");
         $ProductCategory = ProductCategory::where('product_category_id', $id)->get();
 
         return view('master.product-category.edit', compact('ProductCategory'));
@@ -114,7 +119,7 @@ class ProductCategoryController extends Controller
                 'product_category_name' => $Request->product_category_name, 
                 'product_category_slug' => Str::slug($Request->product_category_name),
             ]);
-
+            Log::info(Auth::user()->fullname . " Sedang Mengupdate product category");
             Alert::success('Congrats', 'You\'ve Successfully Updated');
             return redirect()->route('product-category.index');
         } catch (QueryException $e) {
@@ -131,6 +136,7 @@ class ProductCategoryController extends Controller
      */
     public function destroy($id)
     {
+        Log::info(Auth::user()->fullname . " Sedang Mendelete product category");
         ProductCategory::where('product_category_id', $id)->delete();
 
         Alert::success('Congrats', 'You\'ve Successfully Deleted');
