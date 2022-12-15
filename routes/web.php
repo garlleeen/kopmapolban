@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UserExportController;
+use App\Http\Controllers\NotificationTelegram;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,4 +32,5 @@ Route::group(['prefix' => 'master', 'middleware' => ['auth:sanctum', config('jet
     Route::resource('/product-category', ProductCategoryController::class);
     Route::resource('/product', ProductController::class);
     Route::resource('/transaksi', TransaksiController::class);
+    Route::get('/transaction-notif-tele', [NotificationTelegram::class,'transaction_notif_tele']);
 });
