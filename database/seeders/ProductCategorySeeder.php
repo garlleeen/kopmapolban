@@ -17,14 +17,14 @@ class ProductCategorySeeder extends Seeder
      */
     public function run()
     {
-        $kategori = ProductCategory::create([
+        ProductCategory::create([
             'product_category_name' => 'Makanan',
             'product_category_slug' => 'Makanan',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
 
-        $kategori = ProductCategory::create([
+        ProductCategory::create([
             'product_category_name' => 'Minuman',
             'product_category_slug' => 'Minuman',
             'created_at' => date('Y-m-d H:i:s'),
