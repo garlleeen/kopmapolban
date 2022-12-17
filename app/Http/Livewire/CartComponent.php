@@ -5,7 +5,9 @@ namespace App\Http\Livewire;
 use App\Facades\Cart;
 use Livewire\Component;
 use Illuminate\Contracts\View\View;
+use App\Models\Product;
 use App\Models\Transaksi;
+use App\Models\DetailTransaksi;
 use Illuminate\Database\QueryException;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Notifications\SendNotificationTelegram;
@@ -96,17 +98,39 @@ class CartComponent extends Component
         // $total_all = str_replace(',', '.', $total_all);
         $total_all = floatval($total_all);
 
-        $Data  = [
+        $produk_list = Cart::content();
+        
+        $DataTransaksi  = [
             'status_pembayaran' => 1,
             'total_pembayaran' => $total_all,
             'nominal_uang' => $total_all,
             'nominal_kembalian' => 0
         ];
+        $transaksi = Transaksi::create($DataTransaksi);
+        $lastTransaksiId = $transaksi->id;
 
-        Transaksi::create($Data);
+
+
+        foreach ($produk_list as $id => $item){
+            $searchIDProduct = Product::find($id, ['product_id']);
+
+            $DataTransaksiDetail  = [
+                'id_transaksi' => $lastTransaksiId,
+                'id_product' => $searchIDProduct->product_id,
+                'price_buy' => $item->get('price'),
+                'qty' => $item->get('quantity'),
+                'subtotal' => $item->get('price') * $item->get('quantity')
+            ];
+            DetailTransaksi::create($DataTransaksiDetail);
+        }
+
+
         Notification::send($total_all, new SendNotificationTelegram('test')); 
+
         Cart::clear();
+
         $this->updateCart();
+
         Alert::success('Congrats', 'You\'ve Successfully Checkout');
 
     }

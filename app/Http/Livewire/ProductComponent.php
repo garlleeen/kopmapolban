@@ -42,4 +42,37 @@ class ProductComponent extends Component
         Cart::add($this->product->id, $this->product->product_name, $this->product->getRawOriginal('product_price'), $this->quantity);
         $this->emit('productAddedToCart');
     }
+
+    public function addToCartBtn($product_code, $product_name, $product_price): void
+    {
+        // Cart::add($this->product->product_id, $this->product->product_name, $this->product->getRawOriginal('product_price'), $this->quantity);
+        Cart::add($product_code, $product_name, $product_price, $this->quantity);
+        $this->emit('productAddedToCart');
+    }
+
+    public function store()
+
+    {
+
+        $validatedDate = $this->validate([
+            'product_code' => 'required',
+            'product_name' => 'required',
+            'product_price' => 'required',
+        ]);
+
+  
+
+        // Post::create($validatedDate);
+
+  
+
+        session()->flash('message', 'Post Created Successfully.');
+
+  
+
+        $this->product_code = '';
+        $this->product_name = '';
+        $this->product_price = '';
+
+    }
 }

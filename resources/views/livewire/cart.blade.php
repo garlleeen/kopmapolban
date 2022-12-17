@@ -8,7 +8,9 @@
                     </div>
                     <div class="col-sm-6">
                         <button class="btn btn-danger" wire:click="clearCart"><span class="fas fa-trash"></span> Clear Cart</button>
-                        <button class="btn btn-primary" wire:click="CheckOut"><span class="fa fa-check"></span> Checkout</button>
+                        @if ($content->count() > 0)
+                            <button class="btn btn-primary" wire:click="CheckOut"><span class="fa fa-check"></span> Checkout</button>
+                        @endif   
                     </div>
                 </div>
                 <div class="table-responsive">

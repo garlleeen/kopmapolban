@@ -22,6 +22,7 @@ class TransaksiController extends Controller
      */
     public function index()
     {
+        // $Products = Product::where('id', 456)->get();
         $Products = Product::all();
         return view('master.transaksi.index', compact('Products'));
     }
