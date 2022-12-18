@@ -12,6 +12,8 @@ use Illuminate\Database\QueryException;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Notifications\SendNotificationTelegram;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 class CartComponent extends Component
 {
@@ -112,7 +114,7 @@ class CartComponent extends Component
 
 
         foreach ($produk_list as $id => $item){
-            $searchIDProduct = Product::find($id, ['product_id']);
+            $searchIDProduct = Product::find($id, ['product_id','product_stock']);
 
             $DataTransaksiDetail  = [
                 'id_transaksi' => $lastTransaksiId,
@@ -122,6 +124,13 @@ class CartComponent extends Component
                 'subtotal' => $item->get('price') * $item->get('quantity')
             ];
             DetailTransaksi::create($DataTransaksiDetail);
+
+            $DataStokProduct = Product::where('product_id', $searchIDProduct->product_id);
+
+            $DataStokProduct->update([
+                'product_stock' => $searchIDProduct->product_stock - $item->get('quantity')
+            ]);
+            Log::info(Auth::user()->fullname . " Sedang Mengupdate product");
         }
 
 

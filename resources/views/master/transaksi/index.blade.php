@@ -71,7 +71,7 @@
                     <form action="">
                         <div class="form-group row add">
                             <div class="col-md-4">
-                                <input type="hidden" class="form-control" id="product_code" name="product_code" placeholder="QR Code Product">
+                                <input type="hidden" class="form-control" id="product_code"  placeholder="QR Code Product">
                                 <input type="text" class="form-control" id="product_code" name="product_code" placeholder="QR Code Product">
                                 <!-- <p class="error text-center alert alert-danger hidden"></p> -->
                             </div>
@@ -99,6 +99,7 @@
                     <th class="text-center">Name Product</th>
                     <th class="text-center">Description</th>
                     <th class="text-center">Price</th>
+                    <th class="text-center">Stock</th>
                     <th class="text-center">Qty</th>
                     <th class="text-center">Option</th>
                 </tr>
