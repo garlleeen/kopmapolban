@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Faker\Factory;
 use App\Models\User;
+use App\Jobs\DataUserJob;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Log;
@@ -156,5 +159,17 @@ class UserController extends Controller
 
         Alert::success('Congrats', 'You\'ve Successfully Deleted');
         return redirect()->route("user.index");
+    }
+
+    public function user_faker(){
+        $starttime = microtime(true);
+
+        $job = new DataUserJob();
+        $this->dispatch($job);
+
+        $endtime = microtime(true);
+        $timediff = $endtime - $starttime;
+
+        return "<h1> Halaman diproses dalam ". sprintf('%0.2f', $timediff) . " detik </h1>";
     }
 }
