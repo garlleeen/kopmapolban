@@ -12,6 +12,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use RealRashid\SweetAlert\Facades\Alert;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 class TransaksiController extends Controller
 {
@@ -136,5 +137,18 @@ class TransaksiController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function struct($id)
+    {
+        $Transaction = Transaksi::where('id', $id)->get();
+        $DetailTransaction = DetailTransaksi::select('detail_transaksi.*', 'transaksi.total_pembayaran', 'products.product_name')
+                                            ->join('transaksi', 'transaksi.id', '=', 'detail_transaksi.transaksi_id')
+                                            ->join('products', 'products.product_id', '=', 'detail_transaksi.product_id')
+                                            ->where('id', '=', $id)->get();
+
+        $PDF = PDF::loadview('master.transaksi.struct', compact('Transaction', 'DetailTransaksi'));
+        
+        return $PDF->download('Struk.pdf');
     }
 }
