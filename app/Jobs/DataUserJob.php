@@ -3,16 +3,17 @@
 namespace App\Jobs;
 
 use Faker\Factory;
-use App\Models\User;
-use Illuminate\Support\Str;
+use App\Model\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Support\Facades\Hash;
-
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
+
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
+use Illuminate\Support\Str;
+use Illuminate\Database\QueryException;
 
 class DataUserJob implements ShouldQueue
 {
@@ -34,9 +35,16 @@ class DataUserJob implements ShouldQueue
      * @return void
      */
     public function handle()
-    {        
+    {
+        
+        
+        //this will work
+
+        logger()->info('My Log message before Exception');
+
+        //Your other logic
         $faker = Factory::create();
-        $jumlahData = 5;
+        $jumlahData = 100;
         for ($i = 1; $i <= $jumlahData; $i++){
             $data = [
             'fullname' => $faker->name(),
@@ -49,5 +57,11 @@ class DataUserJob implements ShouldQueue
             ];
             User::Create($data);
         }
+
+        throw new \Exception("Message is Logged before the Exception but the job is failed", 1);
+
+        //code below the exception won't work
+
+        logger()->info('My Log message after Exception');
     }
 }
