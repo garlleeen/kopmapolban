@@ -26,7 +26,7 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'master', 'middleware' => ['auth:sanctum', config('jetstream.auth_session'), 'verified']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/export', [UserExportController::class, 'index'])->name('export');
+    Route::get('/user-export', [UserExportController::class, 'index'])->name('export');
     Route::get('/user_faker', [UserController::class,'user_faker']);
 
     Route::resource('/user', UserController::class);
