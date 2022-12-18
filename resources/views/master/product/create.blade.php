@@ -10,6 +10,8 @@
 
         <script>
             function onScanSuccess(decodedText, decodedResult) {
+                var audio = new Audio("{{ asset('media/beep.mp3') }}");
+                audio.play();
                 $("#product_code").val(decodedText);
             }
 
