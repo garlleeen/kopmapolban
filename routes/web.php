@@ -32,5 +32,7 @@ Route::group(['prefix' => 'master', 'middleware' => ['auth:sanctum', config('jet
     Route::resource('/product-category', ProductCategoryController::class);
     Route::resource('/product', ProductController::class);
     Route::resource('/transaksi', TransaksiController::class);
+    Route::post( '/master/transaksi/addItem', [TransaksiController::class,'addItem']);
     Route::get('/transaction-notif-tele', [NotificationTelegram::class,'transaction_notif_tele']);
 });
+

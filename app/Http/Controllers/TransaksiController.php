@@ -22,9 +22,37 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        // $Products = Product::where('id', 456)->get();
-        $Products = Product::all();
+        if (empty($_GET['product_code'])) {
+            $product_code = "sasd";
+        }
+        else{
+            $product_code = $_GET['product_code'];
+        }
+       
+       
+        $Products = Product::where('id', $product_code)->get();
+        // $Products = Product::all();
         return view('master.transaksi.index', compact('Products'));
+    }
+
+    public function addItem(Request $request) {
+        echo "haiiis";
+        die();
+        $rules = array (
+                'name' => 'required'
+        );
+        $validator = Validator::make ( Input::all (), $rules );
+        if ($validator->fails ())
+            return Response::json ( array (
+                        
+                    'errors' => $validator->getMessageBag ()->toArray ()
+            ) );
+            else {
+                $data = new Data ();
+                $data->name = $request->name;
+                $data->save ();
+                return response ()->json ( $data );
+            }
     }
 
     /**
@@ -32,9 +60,26 @@ class TransaksiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        echo "test";
+        echo $_GET['name'];
+        die();
+        $rules = array (
+                'name' => 'required'
+        );
+        $validator = Validator::make ( Input::all (), $rules );
+        if ($validator->fails ())
+            return Response::json ( array (
+                        
+                    'errors' => $validator->getMessageBag ()->toArray ()
+            ) );
+            else {
+                $data = new Data ();
+                $data->name = $request->name;
+                $data->save ();
+                return response ()->json ( $data );
+            }
     }
 
     /**
@@ -45,7 +90,7 @@ class TransaksiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**

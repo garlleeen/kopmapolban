@@ -1,6 +1,9 @@
-<div class="p-5 mx-2 my-2 max-w-md rounded border-2">
-    <h1 class="text-3xl mb-2">{{ $product->product_name }} - Rp. {{ $product->product_price }}</h1>
-    <p class="text-lg mb-2">{{ $product->product_desc }}</p>
-    <input class="border-2 rounded" type="number" min="1" wire:model="quantity">
-    <button class="btn btn-primary" wire:click="addToCart">Add To Cart</button>
-</div>
+<tr>
+    <td>{{ $product->product_name }}</td>
+    <td class="text-center">{{ $product->product_desc }}</td>
+    <td class="text-center">Rp. {{ $product->product_price }}</td>
+    <td class="text-center"><input class="border-2 rounded" type="number" min="1" wire:model="quantity"></td>
+    <td class="text-center">
+        <button class="btn btn-primary" wire:click="addToCart">Add To Cart</button>
+    </td>
+</tr>
