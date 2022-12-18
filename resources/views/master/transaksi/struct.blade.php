@@ -16,7 +16,7 @@
 						<th scope="col">No</th>
 						<th scope="col">Product</th>
 						<th scope="col">Quantity</th>
-						<th scope="col">Total</th>
+						<th scope="col">Subtotal</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -24,7 +24,7 @@
                         $no = 1;
                     ?>
 
-                    @foreach($DetailTransaksi as $DT)
+                    @foreach($DetailTransaction as $DT)
                         <tr>
                             <td scope="row">{{ $no++; }}</td>
                             <td scope="row">{{ $DT->product_name }}</td>
@@ -33,12 +33,12 @@
                         </tr>
                     @endforeach
 
-                    @foreach($Transaksi as $T)
+                    @foreach($Transaction as $T)
 					<tr>
 						<td>Total</td>
 						<td colspan="3">{{ $T->total_pembayaran }}</td>
 					</tr>
-                    #endforeach
+                    @endforeach
 				</tbody>
 			</table>
 		</div>

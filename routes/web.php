@@ -28,6 +28,7 @@ Route::group(['prefix' => 'master', 'middleware' => ['auth:sanctum', config('jet
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/user-export', [UserExportController::class, 'index'])->name('export');
     Route::get('/user_faker', [UserController::class,'user_faker']);
+    Route::get('/master/transaksi/{id}/addItem', [TransaksiController::class,'addItem']);
 
     Route::resource('/user', UserController::class);
     Route::resource('/product-category', ProductCategoryController::class);

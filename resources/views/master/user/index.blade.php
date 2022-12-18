@@ -37,6 +37,9 @@
                         <a href="{{ route('user.create') }}" class="btn btn-primary shadow-none">
                             <span class="fas fa-plus"></span> Create
                         </a>
+                        <a href="{{ route('export') }}" class="btn btn-primary shadow-none">
+                            <span class="fa fa-print"></span> Print
+                        </a>
                     </div>
                 </div>
 

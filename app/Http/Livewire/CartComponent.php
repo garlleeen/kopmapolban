@@ -143,7 +143,7 @@ class CartComponent extends Component
 
         $this->updateCart();
 
-        return redirect()->route('transaksi.index');
+        return redirect()->route('transaksi.show', $lastTransaksiId);
         Alert::success('Congrats', 'You\'ve Successfully Checkout');
         Log::info(Auth::user()->fullname . " Sedang menyelesaikan transaksi");
 

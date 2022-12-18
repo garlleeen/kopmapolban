@@ -101,8 +101,17 @@ class TransaksiController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
+    {   
+        $Transaction = Transaksi::where('id', $id)->get();
+        $DetailTransaction = DetailTransaksi::select('detail_transaksi.*', 'transaksi.total_pembayaran', 'products.product_name')
+                                            ->join('transaksi', 'transaksi.id', '=', 'detail_transaksi.id_transaksi')
+                                            ->join('products', 'products.product_id', '=', 'detail_transaksi.id_product')
+                                            ->where('transaksi.id', '=', $id)->get();
+
+        $PDF = PDF::loadview('master.transaksi.struct', compact('Transaction', 'DetailTransaction'));
+        
+        return $PDF->download('Struk.pdf');
+        return redirect()->route('transaksi.index');
     }
 
     /**
@@ -141,6 +150,8 @@ class TransaksiController extends Controller
 
     public function struct($id)
     {
+        echo "hai";
+        die();
         $Transaction = Transaksi::where('id', $id)->get();
         $DetailTransaction = DetailTransaksi::select('detail_transaksi.*', 'transaksi.total_pembayaran', 'products.product_name')
                                             ->join('transaksi', 'transaksi.id', '=', 'detail_transaksi.transaksi_id')
