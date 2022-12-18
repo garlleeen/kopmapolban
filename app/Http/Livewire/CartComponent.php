@@ -110,7 +110,7 @@ class CartComponent extends Component
         ];
         $transaksi = Transaksi::create($DataTransaksi);
         $lastTransaksiId = $transaksi->id;
-
+        Log::info(Auth::user()->fullname . " Sedang membuat transaksi baru");
 
 
         foreach ($produk_list as $id => $item){
@@ -124,6 +124,7 @@ class CartComponent extends Component
                 'subtotal' => $item->get('price') * $item->get('quantity')
             ];
             DetailTransaksi::create($DataTransaksiDetail);
+            Log::info(Auth::user()->fullname . " Sedang Menambahkan detail transaksi");
 
             $DataStokProduct = Product::where('product_id', $searchIDProduct->product_id);
 
@@ -135,12 +136,16 @@ class CartComponent extends Component
 
 
         Notification::send($total_all, new SendNotificationTelegram('test')); 
+        Log::info(Auth::user()->fullname . " Sedang mengirim notifikasi");
 
         Cart::clear();
+        Log::info(Auth::user()->fullname . " Sedang menghapus list belanja / cart");
 
         $this->updateCart();
 
+        return redirect()->route('transaksi.index');
         Alert::success('Congrats', 'You\'ve Successfully Checkout');
+        Log::info(Auth::user()->fullname . " Sedang menyelesaikan transaksi");
 
     }
 }
